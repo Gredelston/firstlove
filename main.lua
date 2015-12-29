@@ -1,6 +1,7 @@
-require('./player')
+require('player')
 
 function love.load()
+  player.load()
 end
 
 function love.keypressed(key)
@@ -14,8 +15,6 @@ function love.update(dt)
 end
 
 function love.draw(dt)
-  love.graphics.print(
-    "Hello, " .. player.name .. "!",
-    400, 300
-  )
+  love.graphics.print("Hello, Greg!", 400, 300)
+  love.graphics.draw(player.sprites.ready, 400, 300)
 end
