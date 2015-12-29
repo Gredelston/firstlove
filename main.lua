@@ -16,5 +16,5 @@ end
 
 function love.draw(dt)
   love.graphics.print("Hello, Greg!", 400, 300)
-  love.graphics.draw(player.sprites.ready, 400, 300)
+  love.graphics.draw(player.sprite, 400, 300)
 end
