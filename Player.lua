@@ -3,28 +3,28 @@ require('utils')
 Player = {}
 local scale = 2/5
 
-function Player:new(params)
-  setmetatable(params, self)
-  self.__index = self
+-- Load up those sprites
+Player.sprites = {
+  stand = 'bunny1_stand.png',
+  walk1 = 'bunny1_walk1.png',
+  walk2 = 'bunny1_walk2.png'
+}
 
-  -- load up those sprites
-  Player.sprites = {
-    stand = 'bunny1_stand.png',
-    walk1 = 'bunny1_walk1.png',
-    walk2 = 'bunny1_walk2.png'
-  }
-  local spriteDirectory = 'assets/PNG/Players/'
-  for sprite, file in pairs(Player.sprites) do
-    Player.sprites[sprite] = loadImage(spriteDirectory..file)
-  end
+local spriteDirectory = 'assets/PNG/Players/'
+for sprite, file in pairs(Player.sprites) do
+  Player.sprites[sprite] = loadImage(spriteDirectory..file)
+end
 
-  -- initialize those attributes
-  self:setSprite('stand')
+--- PROTOTYPE DEFINITIONS ---
+
+function Player:new(newPlayer)
+  setmetatable(newPlayer, self) -- "self" here refers to the Player prototype
+  self.__index = self -- this is how inheritance happens???
+  self.x = newPlayer.x
+  self.y = newPlayer.y
   self.direction = 0
-  self.x = params.x
-  self.y = params.y
-  self.walkStartTime = nil
-  return params
+  self:setSprite('stand')
+  return newPlayer
 end
 
 function Player:setSprite(spr)
