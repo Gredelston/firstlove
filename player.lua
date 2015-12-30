@@ -19,17 +19,21 @@ function player.load()
   player.direction = 0
 end
 
+function player.setSprite(spr)
+  player.sprite = player.sprites[spr]
+end
+
 function player.turnLeft()
   player.direction = -1
-  player.sprite = player.sprites.walk1
+  player.setSprite('walk1')
 end
 function player.turnRight()
   player.direction = 1
-  player.sprite = player.sprites.walk1
+  player.setSprite('walk1')
 end
 function player.stop()
   player.direction = 0
-  player.sprite = player.sprites.stand
+  player.setSprite('stand')
 end
 
 function player.draw()
