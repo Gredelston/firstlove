@@ -5,16 +5,24 @@ function love.load()
 end
 
 function love.keypressed(key)
-  if key == 'escape' then love.event.quit() end
+  if key == 'escape' then
+    love.event.quit()
+  elseif key == 'left' then
+    player.turnLeft()
+  elseif key == 'right' then
+    player.turnRight()
+  end
 end
 
 function love.keyreleased(key)
+  if key == 'left' or key == 'right' then
+    player.stop()
+  end
 end
 
 function love.update(dt)
 end
 
 function love.draw(dt)
-  love.graphics.print("Hello, Greg!", 400, 300)
-  love.graphics.draw(player.sprite, 400, 300)
+  player.draw()
 end
