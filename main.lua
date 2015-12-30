@@ -7,16 +7,14 @@ end
 function love.keypressed(key)
   if key == 'escape' then
     love.event.quit()
-  elseif key == 'left' then
-    player.turnLeft()
-  elseif key == 'right' then
-    player.turnRight()
+  elseif inList(key, {'left', 'right'}) then
+    player.startWalking(key)
   end
 end
 
 function love.keyreleased(key)
   if key == 'left' or key == 'right' then
-    player.stop()
+    player.stopWalking()
   end
 end
 

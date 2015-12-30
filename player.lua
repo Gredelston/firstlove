@@ -24,22 +24,16 @@ function player.setSprite(spr)
   player.sprite = player.sprites[spr]
 end
 
-function player.turnLeft()
-  player.direction = -1
-  player.setSprite('walk1')
+function player.startWalking(key)
+  -- key should only ever be 'left' or 'right'.
+  if key == 'left' then player.direction = -1 else player.direction = 1 end
   player.walkStartTime = love.timer.getTime()
 end
-function player.turnRight()
-  player.direction = 1
-  player.setSprite('walk1')
-  player.walkStartTime = love.timer.getTime()
-end
-function player.stop()
+function player.stopWalking()
   player.direction = 0
   player.setSprite('stand')
   player.walkStartTime = nil
 end
-
 
 function player.update(dt)
   player.animateWalk()
