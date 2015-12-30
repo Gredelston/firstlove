@@ -42,14 +42,7 @@ end
 
 
 function player.update(dt)
-  if player.walkStartTime then
-    clock = math.floor((player.walkStartTime-love.timer.getTime()) * 5)
-    if clock%2==1 then
-      player.setSprite('walk1')
-    else
-      player.setSprite('walk2')
-    end
-  end
+  player.animateWalk()
 end
 
 function player.draw()
@@ -60,5 +53,15 @@ function player.draw()
     -- I am wrathful.
     local offset = .15 * love.graphics.getWidth(player.sprite)
     love.graphics.draw(player.sprite,100,100,0,-1*sx,sx,offset)
+  end
+end
+
+function player.animateWalk()
+  if not player.walkStartTime then return end
+  clock = math.floor((player.walkStartTime-love.timer.getTime()) * 5)
+  if clock%2==1 then
+    player.setSprite('walk1')
+  else
+    player.setSprite('walk2')
   end
 end
