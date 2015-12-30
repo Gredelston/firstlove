@@ -17,7 +17,8 @@ function player.load()
 
   player.setSprite('stand')
   player.direction = 0
-  player.walkStartTime = nil
+  player.x = 100
+  player.y = 100
 end
 
 function player.setSprite(spr)
@@ -41,12 +42,12 @@ end
 
 function player.draw()
   if player.direction ~= -1 then
-    love.graphics.draw(player.sprite, 100, 100, 0, sx)
+    love.graphics.draw(player.sprite, player.x, player.y, 0, sx)
   else
     -- I have no idea why this .15 thing happens.
     -- I am wrathful.
     local offset = .15 * love.graphics.getWidth(player.sprite)
-    love.graphics.draw(player.sprite,100,100,0,-1*sx,sx,offset)
+    love.graphics.draw(player.sprite,player.x,player.y,0,-1*sx,sx,offset)
   end
 end
 
