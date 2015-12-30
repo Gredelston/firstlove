@@ -1,6 +1,7 @@
 require('utils')
+require('Object')
 
-Player = {}
+Player = Object:new{}
 local scale = 2/5
 
 -- Load up those sprites
@@ -27,10 +28,6 @@ function Player:new(newPlayer)
   return newPlayer
 end
 
-function Player:setSprite(spr)
-  self.sprite = Player.sprites[spr]
-end
-
 function Player:startWalking(key)
   -- key should only ever be 'left' or 'right'.
   if key == 'left' then self.direction = -1 else self.direction = 1 end
@@ -42,7 +39,6 @@ function Player:stopWalking()
   self:setSprite('stand')
   self.walkStartTime = nil
 end
-
 
 function Player:update(dt)
   self:animateWalk()
